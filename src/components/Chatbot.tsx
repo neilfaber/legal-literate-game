@@ -2,6 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { SendHorizontal, User, Bot, Lightbulb } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 interface Message {
   id: number;
@@ -216,6 +218,15 @@ const Chatbot = () => {
                 </button>
               </form>
             </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-gray-600 mb-4">Need help with a specific legal situation?</p>
+            <Link to="/legal-assistant">
+              <Button className="bg-legalease-600 text-white hover:bg-legalease-700">
+                Try Our Full Legal AI Assistant
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
