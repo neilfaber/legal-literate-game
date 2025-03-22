@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -26,10 +25,10 @@ const Header = () => {
   };
 
   const navigationLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Chat', href: '#chatbot' },
-    { name: 'Templates', href: '#templates' },
-    { name: 'Community', href: '#community' },
+    { name: 'Home', href: '/' },
+    { name: 'Chat', href: '/chat' },
+    { name: 'Templates', href: '/templates' },
+    { name: 'Community', href: '/community' },
   ];
 
   return (
