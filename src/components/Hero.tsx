@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -40,21 +41,21 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-              <a
-                href="#chatbot"
+              <Link
+                to="/chat"
                 className="w-full sm:w-auto px-6 py-3 bg-legalease-600 text-white rounded-full 
                 font-medium transition-all hover:shadow-lg hover:bg-legalease-700 
                 focus:outline-none focus:ring-2 focus:ring-legalease-500 focus:ring-offset-2 
-                button-shine"
+                button-shine text-center"
               >
                 Ask Legal Questions
-              </a>
+              </Link>
               <a
                 href="#features"
                 className="w-full sm:w-auto px-6 py-3 border border-gray-200 hover:border-gray-300 
                 rounded-full font-medium text-gray-700 transition-all 
                 hover:shadow hover:bg-white 
-                focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2"
+                focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2 text-center"
               >
                 Explore Features
               </a>

@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { MessageSquare, Users, ThumbsUp, Clock } from 'lucide-react';
+import { MessageSquare, Users, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const discussionTopics = [
   {
@@ -97,7 +98,7 @@ const Community = () => {
               </div>
               
               <div className="p-6 border-t border-gray-100 text-center">
-                <Button className="bg-legalease-600 text-white hover:bg-legalease-700">
+                <Button className="bg-legalease-600 text-white hover:bg-legalease-700 w-full sm:w-auto">
                   View All Discussions
                 </Button>
               </div>
@@ -152,9 +153,11 @@ const Community = () => {
             <div className="bg-legalease-50 rounded-xl overflow-hidden mt-6 p-6">
               <h3 className="text-lg font-bold text-legalease-700 mb-3">Join Our Community</h3>
               <p className="text-sm text-gray-600 mb-4">Connect with others facing similar legal challenges and share experiences.</p>
-              <Button className="w-full bg-legalease-600 text-white hover:bg-legalease-700">
-                Create an Account
-              </Button>
+              <Link to="/auth">
+                <Button className="w-full bg-legalease-600 text-white hover:bg-legalease-700">
+                  Create an Account
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

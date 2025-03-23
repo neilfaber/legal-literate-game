@@ -1,6 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import AuthButton from './AuthButton';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,7 +44,7 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <a href="#" className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-lg bg-legalease-600 flex items-center justify-center transition-transform hover:scale-105">
             <span className="text-white font-bold text-lg">L</span>
           </div>
@@ -51,14 +54,14 @@ const Header = () => {
           )}>
             <span className="font-bold">Legal</span>Ease
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navigationLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className={cn(
                 "text-sm font-medium relative py-1 transition-all duration-300",
                 isScrolled ? "text-gray-700 hover:text-legalease-700" : "text-gray-800 hover:text-legalease-600",
@@ -66,28 +69,19 @@ const Header = () => {
               )}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hidden md:flex">
-          <a
-            href="#"
-            className={cn(
-              "transition-all px-5 py-2 rounded-full text-sm font-medium",
-              isScrolled
-                ? "bg-legalease-600 text-white hover:bg-legalease-700"
-                : "bg-white/90 backdrop-blur text-legalease-700 hover:bg-white"
-            )}
-          >
-            Get Started
-          </a>
+          <AuthButton />
         </div>
 
         {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 rounded-md focus:outline-none"
           onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
             <X className="h-6 w-6 text-gray-800" />
@@ -106,28 +100,21 @@ const Header = () => {
       >
         <nav className="flex flex-col space-y-8 mt-8">
           {navigationLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
-              className="text-lg font-medium text-gray-800 hover:text-legalease-600 transition-colors"
+              to={link.href}
+              className="text-lg font-medium text-gray-800 hover:text-legalease-600 transition-colors w-full block"
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 document.body.style.overflow = 'auto';
               }}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#"
-            className="bg-legalease-600 text-white hover:bg-legalease-700 transition-colors px-5 py-3 rounded-full text-center text-lg font-medium mt-4"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              document.body.style.overflow = 'auto';
-            }}
-          >
-            Get Started
-          </a>
+          <div className="pt-4">
+            <AuthButton />
+          </div>
         </nav>
       </div>
     </header>

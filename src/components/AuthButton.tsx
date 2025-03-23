@@ -37,26 +37,26 @@ const AuthButton = () => {
   };
 
   if (isLoading) {
-    return <Button variant="ghost" disabled>Loading...</Button>;
+    return <Button variant="ghost" disabled className="w-full sm:w-auto">Loading...</Button>;
   }
 
   if (user) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+          <Button variant="ghost" className="relative h-10 w-10 rounded-full p-0">
             <Avatar className="h-9 w-9">
               <AvatarImage src={user.user_metadata?.avatar_url || undefined} alt={user.email || 'User'} />
               <AvatarFallback>{user.email?.charAt(0).toUpperCase() || 'U'}</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem asChild>
-            <Link to="/profile">Profile</Link>
+        <DropdownMenuContent align="end" className="w-56">
+          <DropdownMenuItem asChild className="cursor-pointer">
+            <Link to="/profile" className="w-full">Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleSignOut}>
+          <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
             Sign Out
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -65,8 +65,8 @@ const AuthButton = () => {
   }
 
   return (
-    <Link to="/auth">
-      <Button variant="outline">Sign In</Button>
+    <Link to="/auth" className="w-full sm:w-auto block">
+      <Button variant="outline" className="w-full sm:w-auto">Sign In</Button>
     </Link>
   );
 };
