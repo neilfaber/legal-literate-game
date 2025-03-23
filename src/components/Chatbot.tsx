@@ -19,6 +19,19 @@ const sampleQuestions = [
   "What should I know about rental agreements?"
 ];
 
+// Legal terms and concepts for education purposes
+const legalTerms: Record<string, string> = {
+  "habeas corpus": "Habeas corpus is a legal principle that allows individuals to challenge unlawful detention. For example, if someone believes they're being held in jail without proper legal process, they can file a 'writ of habeas corpus' asking a court to review their case.",
+  
+  "pro bono": "Pro bono refers to legal services provided voluntarily and without payment, especially for the public good. For example, a corporate lawyer might spend a few hours each month helping low-income individuals with housing issues at no cost.",
+  
+  "power of attorney": "Power of attorney is a legal document that gives someone else the authority to make decisions on your behalf. For example, if you become seriously ill, the person with power of attorney can handle your financial affairs or make healthcare decisions according to your wishes.",
+  
+  "tort": "A tort is a civil wrong that causes someone else to suffer loss or harm, resulting in legal liability. For example, if a driver negligently hits your car, their negligence is a tort that makes them liable for your vehicle repair costs and medical expenses.",
+  
+  "subpoena": "A subpoena is a legal document ordering a person to appear in court to provide testimony or produce documents. For example, if you witnessed a car accident, you might receive a subpoena requiring you to appear in court to testify about what you saw.",
+};
+
 // Sample responses for demo purposes
 const sampleResponses: Record<string, string> = {
   "What are my rights if I'm stopped by police?": 
@@ -32,6 +45,38 @@ const sampleResponses: Record<string, string> = {
   
   "What should I know about rental agreements?": 
     "Key rental agreement information:\n\n1. Lease term and amount\n2. Security deposit terms and conditions\n3. Maintenance responsibilities\n4. Rules about modifications\n5. Pet policies\n6. Subletting rules\n7. Termination procedures\n8. State-specific tenant rights\n\nAlways read the entire agreement before signing and keep a copy for your records."
+};
+
+const generateLegalResponse = (question: string): string => {
+  // First check if this is one of our sample questions
+  if (sampleResponses[question.trim()]) {
+    return sampleResponses[question.trim()];
+  }
+  
+  // Check if user is asking about a legal term
+  const lowerQuestion = question.toLowerCase();
+  
+  // Check for legal term definitions
+  for (const term in legalTerms) {
+    if (lowerQuestion.includes(term) || 
+        lowerQuestion.includes(`what is ${term}`) || 
+        lowerQuestion.includes(`define ${term}`) || 
+        lowerQuestion.includes(`meaning of ${term}`)) {
+      return `**${term.charAt(0).toUpperCase() + term.slice(1)}**: ${legalTerms[term]}`;
+    }
+  }
+  
+  // For questions about rights or procedures
+  if (lowerQuestion.includes("right") || lowerQuestion.includes("rights")) {
+    return "Legal rights vary significantly depending on the specific situation, jurisdiction, and applicable laws. Generally, citizens have rights related to:\n\n1. Due process\n2. Equal protection under the law\n3. Freedom from unreasonable searches\n4. Right to legal representation\n\nFor your specific situation, I recommend consulting with a qualified attorney who can provide advice tailored to your circumstances and jurisdiction.";
+  }
+  
+  if (lowerQuestion.includes("sue") || lowerQuestion.includes("lawsuit")) {
+    return "The process of filing a lawsuit typically involves:\n\n1. Attempting to resolve the dispute outside of court\n2. Consulting with an attorney to evaluate your case\n3. Filing a complaint with the appropriate court\n4. Serving the defendant with the lawsuit\n5. Going through discovery, where both sides exchange information\n6. Attempting settlement negotiations\n7. Proceeding to trial if necessary\n\nLawsuits can be complex and time-consuming. Consider the potential costs and benefits before proceeding.";
+  }
+  
+  // Default comprehensive response for other legal questions
+  return "Based on your question about legal matters, here's some general information:\n\n1. Legal situations are often complex and highly dependent on specific details and jurisdictions\n2. While I can provide general legal information, this should not be considered legal advice\n3. For your specific situation, I recommend:\n   - Researching applicable laws in your jurisdiction\n   - Consulting relevant government websites for official information\n   - Speaking with a qualified attorney who specializes in this area\n   - Looking into legal aid organizations if cost is a concern\n\nIs there a more specific aspect of your question I can help clarify?";
 };
 
 const Chatbot = () => {
@@ -72,8 +117,7 @@ const Chatbot = () => {
 
     // Simulate bot response delay
     setTimeout(() => {
-      const botResponse = sampleResponses[inputValue.trim()] || 
-        "I don't have specific information on that legal question. In a real application, I would provide accurate legal information here based on legal databases and resources.";
+      const botResponse = generateLegalResponse(inputValue);
       
       const botMessage: Message = {
         id: userMessageId + 1,
@@ -100,18 +144,6 @@ const Chatbot = () => {
     <section id="chatbot" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-legalease-50 text-legalease-700 mb-4">
-              AI Assistant
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Get Clear Answers to Your Legal Questions
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Our AI-powered assistant explains complex legal concepts in simple language, helping you understand your rights and obligations.
-            </p>
-          </div>
-
           <div className="bg-white rounded-xl shadow-subtle border border-gray-100 overflow-hidden">
             <div className="border-b border-gray-100 py-4 px-6">
               <div className="flex items-center space-x-2">

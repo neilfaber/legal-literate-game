@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,9 +17,6 @@ const ChatPage = () => {
             <h1 className="text-3xl md:text-4xl font-bold mb-6">
               Get Answers to Your Legal Questions
             </h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Our AI-powered legal assistant can help you understand legal concepts and guide you through common legal issues.
-            </p>
           </div>
           <Chatbot />
         </div>
@@ -28,4 +26,4 @@ const ChatPage = () => {
   );
 };
 
-export default ChatPage; 
+export default ChatPage;
