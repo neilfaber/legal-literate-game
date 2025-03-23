@@ -17,6 +17,9 @@ const CommunityPage = () => {
             <h1 className="text-3xl md:text-4xl font-bold mb-6">
               Connect with the Legal Community
             </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Ask questions, get answers from qualified legal professionals, and connect with others facing similar legal challenges.
+            </p>
           </div>
           <Community />
         </div>
